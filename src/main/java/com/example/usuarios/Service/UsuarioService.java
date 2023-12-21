@@ -26,10 +26,14 @@ public class UsuarioService {
 	}
 	
 	public void save(Usuario usuario) {
+		String encryptedPassword = passwordEncoder.encode(usuario.getPasswd());
+		usuario.setPasswd(encryptedPassword);
 		usuarioRepository.save(usuario);
 	}
 	
 	public void putById(Usuario usuario, Long id) {
+		String encryptedPassword = passwordEncoder.encode(usuario.getPasswd());
+		usuario.setPasswd(encryptedPassword);
 		usuario.setId(id);
 		usuarioRepository.save(usuario);
 	}
