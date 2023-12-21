@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.usuarios.Entity.Usuario;
@@ -14,6 +15,7 @@ public class UsuarioService {
 
 	@Autowired
 	UsuarioRepository usuarioRepository;
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	public List<Usuario> getAll() {
 		return (List<Usuario>) usuarioRepository.findAll();

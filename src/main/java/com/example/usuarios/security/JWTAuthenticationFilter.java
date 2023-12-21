@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.jsonwebtoken.io.IOException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,19 +25,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		
 		
 		try {
-			authCredentials = new ObjectMapper().readValue(request.getReader(), AuthCredentials.class);
-		} catch (StreamReadException e) {
-			e.printStackTrace();
-		} catch (DatabindException e) {
-			e.printStackTrace();
-		} catch (java.io.IOException e) {
-			e.printStackTrace();
-		}
+            authCredentials = new ObjectMapper().readValue(request.getReader(), AuthCredentials.class);
+        } catch(IOException | java.io.IOException e) {
+
+        }
 		
 		UsernamePasswordAuthenticationToken usernamePAT = new UsernamePasswordAuthenticationToken(
-				authCredentials.getEmail(), 
-				authCredentials.getPassword(),
-				Collections.emptyList());
+                authCredentials.getEmail(),
+                authCredentials.getPassword(),
+                Collections.emptyList()
+        );
 		
 		return getAuthenticationManager().authenticate(usernamePAT);
 	}

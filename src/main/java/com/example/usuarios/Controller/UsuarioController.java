@@ -19,7 +19,6 @@ import com.example.usuarios.Service.UsuarioService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200") 
 @RequestMapping(path = "/api/usuarios")
 public class UsuarioController {
 

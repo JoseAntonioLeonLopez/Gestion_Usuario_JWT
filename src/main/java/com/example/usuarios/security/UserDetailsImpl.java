@@ -8,11 +8,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.usuarios.Entity.Usuario;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
 	private final Usuario usuario;
-	
-	
 	
 	public UserDetailsImpl(Usuario usuario) {
 		this.usuario = usuario;
